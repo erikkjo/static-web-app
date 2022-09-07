@@ -2,6 +2,26 @@
     "navigationFallback": {
         "rewrite": "/index.html"
     },
+    "routes": [
+        {
+            "route": "/admin/*",
+            "allowedRoles": [
+                "authenticated"
+            ]
+        },
+        {
+            "route": "/api/GetUser*",
+            "allowedRoles": ["authenticated"]
+        },
+        {
+            "route": "/login",
+            "rewrite": "/.auth/login/aadb2c"
+        },
+        {
+            "route": "/logout",
+            "redirect": "/.auth/logout"
+        }
+    ],
     "auth": {
         "identityProviders": {
           "customOpenIdConnectProviders": {
@@ -17,7 +37,7 @@
               },
               "login": {
                 "nameClaimType": "emails",
-                "scopes": [],
+                "scopes": ["openid"],
                 "loginParameterNames": []
               }
             }
